@@ -1,0 +1,1028 @@
+# Engine settings
+clearcolorbuffer	1
+clearcolor	0.0000000 0.0000000 0.0000000 0.0000000
+ambient	1.0000000 1.0000000 1.0000000 0.0000000
+fog	0
+fogcolor	0.0000000 0.0000000 0.0000000 0.0000000
+fogmode	exp
+fogstart	100.0000000
+fogend	500.0000000
+fogdensity	1.0000000
+
+
+# Object creation
+
+new sivicPackage sky_bluedream
+new sivicPackage sun
+new sivicPackage ground_horsering
+new sivicPackage Vehicle
+new mgPositionable PositionVehicle
+new sivicPackage radar_1
+new sivicDistanceObserver distance
+new sivicDistanceObserverDisplay displaydistance
+new mgPositionable TargetPosition
+new sivicDistanceObserverViewport DistanceViewPort
+new sivicPackage car_target1
+new sivicEvent event
+new sivicTime time
+
+
+# Object configuration
+
+# Object _DefaultRenderer with type mgAccurateRenderer
+_DefaultRenderer.SetDisabled	0
+_DefaultRenderer.SetHidden	1
+_DefaultRenderer.SetPersistent	1
+_DefaultRenderer.SetWireframe 0
+_DefaultRenderer.SetNoTextures 0
+_DefaultRenderer.SetClampVertexColor 0
+_DefaultRenderer.SetClampFragmentColor 0
+
+# Object editor with type sivicPackage
+editor.SetDisabled	0
+editor.SetHidden	1
+editor.SetPersistent	1
+editor.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor.SetLocalScale	1.0000000 1.0000000 1.0000000
+
+# Object editor/cam with type sivicCamera
+editor/cam.SetPeriod 0.0400000
+editor/cam.SetOMGDDSEnabled false
+editor/cam.SetFileName cam
+editor/cam.SetExtension .cap
+editor/cam.Off 
+editor/cam.SetRecordEnabled false
+editor/cam.SetExportFormat tsv
+editor/cam.SetDisabled	0
+editor/cam.SetPersistent	1
+editor/cam.SetLocalPosition	-183.1959381 276.5644836 49.6979523
+editor/cam.SetLocalRotation	43.9741173 11.6177006 28.0475712
+#editor/cam.SetLocalRotationAngles	45.0000839 -0.0000060 29.5981560
+editor/cam.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/cam.SetFrustum	-0.1322685 0.1322685 -0.0767327 0.0767327 0.1000000 5000.0000000
+editor/cam.SetRenderSize 1248 724
+editor/cam.SetRenderer editor/ren
+editor/cam.SetCaptureFileName MGEngine
+editor/cam.SetClearColorBufferRegion 1
+editor/cam.SetColorFormat rgb8
+editor/cam.SetDepthFormat DEPTH_24
+editor/cam.SetMultiSamples 4
+editor/cam.SetCorrectDistortion 1
+editor/cam.SetEnableIntegration 0
+editor/cam.SetExposureTime 0.0400000
+editor/cam.SetExposureSampling 0.0050000
+editor/cam.SetMatrixSize 2.6666000 2.0000000
+editor/cam.SetFocalLength 1.3032253
+editor/cam.SetZNear 0.1000000
+editor/cam.SetZFar 5000.0000000
+editor/cam.SetCollectDepthImage off
+editor/cam.SetDepthImageRange 1000
+editor/cam.SetDepthImageResolution 1
+editor/cam.SetImageType RGB24
+editor/cam.SetNbEffectiveBits 8
+editor/cam.SetRecordFormat bmp
+editor/cam.SetPNGCompression png_1
+editor/cam.SetModeCorrection off
+editor/cam.SetCollectLabelImage 0
+editor/cam.SetOccludeLabels 1
+
+# Object editor/view with type sivicCameraViewport
+editor/view.SetDisabled	0
+editor/view.SetPersistent	1
+editor/view.SetAutoResize 1
+editor/view.SetViewport 0.0000000% 0.0000000% 100.0000000% 100.0000000%
+editor/view.SetCamera editor/cam
+editor/view.SetColorMask 1 1 1
+editor/view.SetForceCameraResize 1
+editor/view.SetMinDepthRange 0.0000000
+editor/view.SetMaxDepthRange 100.0000000
+editor/view.SetLookupTexture 
+
+# Object editor/ren with type sivicEditorRenderer
+editor/ren.SetDisabled	0
+editor/ren.SetPersistent	1
+editor/ren.SetWireframe 0
+editor/ren.SetNoTextures 0
+editor/ren.SetClampVertexColor 0
+editor/ren.SetClampFragmentColor 0
+editor/ren.SetShowGrid 1
+editor/ren.SetGridMesh checker
+editor/ren.SetShowAxes 1
+editor/ren.SetAxesMesh repere
+editor/ren.SetHighlight 1
+editor/ren.SetHighlightColor 1.0000000 0.3000000 0.0000000 
+
+# Object editor/cont with type mgPositionController
+editor/cont.SetDisabled	0
+editor/cont.SetPersistent	1
+editor/cont.AttachTo editor/cam
+editor/cont.SetXPosController	x_trans3
+editor/cont.SetYPosController	y_trans3
+editor/cont.SetZPosController	z_trans3
+editor/cont.SetXRotController	x_rot3
+editor/cont.SetYRotController	y_rot3
+editor/cont.SetZRotController	z_rot3
+editor/cont.SetTranslationSpeed	10.0000000
+editor/cont.SetRotationSpeed	3.1415899
+editor/cont.SetRealTime	on
+editor/cont.SetMode Fly
+
+# Object editor/tt with type mgTrackTo
+editor/tt.SetDisabled	0
+editor/tt.SetPersistent	1
+editor/tt.ApplyTo editor/cam
+
+# Object editor/_RendererPlugin_sivicBeaconReceiverDisplay with type sivicBeaconReceiverDisplay
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicBeaconReceiverDisplay.SetWireframe 1
+
+# Object editor/_RendererPlugin_sivicBeaconTransmitterDisplay with type sivicBeaconTransmitterDisplay
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicBeaconTransmitterDisplay.SetWireframe 1
+
+# Object editor/_RendererPlugin_sivicCameraDisplay with type sivicCameraDisplay
+editor/_RendererPlugin_sivicCameraDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicCameraDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicCameraDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicCameraDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicCameraDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicCameraDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicCameraDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicCameraDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicCameraDisplay.SetDoNotRender	0
+
+# Object editor/_RendererPlugin_sivicCarDisplay with type sivicCarDisplay
+editor/_RendererPlugin_sivicCarDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicCarDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicCarDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicCarDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicCarDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicCarDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicCarDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicCarDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicCarDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicCarDisplay.SetShowTrackLeft 1
+editor/_RendererPlugin_sivicCarDisplay.SetShowTrackCenter 1
+editor/_RendererPlugin_sivicCarDisplay.SetShowTrackRight 1
+editor/_RendererPlugin_sivicCarDisplay.SetShowPath 1
+editor/_RendererPlugin_sivicCarDisplay.SetZShift 0.1000000
+editor/_RendererPlugin_sivicCarDisplay.SetColorPath 0 255 0 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorTrkCenter 0 255 255 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorTrkLeft 0 0 255 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorTrkRight 255 0 0 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorPathPoints 155 0 100 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorTrkCenterPoints 255 0 0 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorTrkLeftPoints 255 255 0 255 
+editor/_RendererPlugin_sivicCarDisplay.SetColorTrkRightPoints 255 255 0 255 
+editor/_RendererPlugin_sivicCarDisplay.SetPointSize 1.0000000
+editor/_RendererPlugin_sivicCarDisplay.SetShowMeanTurningRadiusFront 0
+editor/_RendererPlugin_sivicCarDisplay.SetShowTurningFrontDeadZone 0
+editor/_RendererPlugin_sivicCarDisplay.SetShowCollisionRaytrace 0
+
+# Object editor/_RendererPlugin_sivicCommunicationDisplay with type sivicCommunicationDisplay
+editor/_RendererPlugin_sivicCommunicationDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicCommunicationDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicCommunicationDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicCommunicationDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicCommunicationDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicCommunicationDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicCommunicationDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicCommunicationDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicCommunicationDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicCommunicationDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicCommunicationDisplay.SetWireframe 1
+
+# Object editor/_RendererPlugin_sivicCompassDisplay with type sivicCompassDisplay
+editor/_RendererPlugin_sivicCompassDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicCompassDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicCompassDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicCompassDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicCompassDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicCompassDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicCompassDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicCompassDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicCompassDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicCompassDisplay.SetWireframe 1
+editor/_RendererPlugin_sivicCompassDisplay.SetShowWind 1
+
+# Object editor/_RendererPlugin_sivicCompassRoseDisplay with type sivicCompassRoseDisplay
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicCompassRoseDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetWireframe 0
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetShowWind 1
+editor/_RendererPlugin_sivicCompassRoseDisplay.SetCompassPoint 8
+
+# Object editor/_RendererPlugin_sivicDistanceObserverDisplay with type sivicDistanceObserverDisplay
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicDistanceObserverDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetWireframe 1
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetShowObjectIndicator 0
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetShowMeasurePoint 1
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetColor 0.0000000 0.0000000 1.0000000
+editor/_RendererPlugin_sivicDistanceObserverDisplay.SetLineWidth 5.0000000
+
+# Object editor/_RendererPlugin_sivicEventDisplay with type sivicEventDisplay
+editor/_RendererPlugin_sivicEventDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicEventDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicEventDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicEventDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicEventDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicEventDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicEventDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicEventDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicEventDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicEventDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicEventDisplay.SetWireframe 1
+
+# Object editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay with type sivicExternalTrajectoryReaderDisplay
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetPrecision 8
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetPathColor 1.0000000 0.3300000 0.5000000 1.0000000
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetPointsColor 0.0000000 0.5000000 0.8000000 1.0000000
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetShowPath 1
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetShowPoints 1
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetShowOrientation 1
+editor/_RendererPlugin_sivicExternalTrajectoryReaderDisplay.SetPointSize 0.0800000
+
+# Object editor/_RendererPlugin_sivicGPSDisplay with type sivicGPSDisplay
+editor/_RendererPlugin_sivicGPSDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicGPSDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicGPSDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicGPSDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicGPSDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicGPSDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicGPSDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicGPSDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicGPSDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicGPSDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicGPSDisplay.SetWireframe 1
+
+# Object editor/_RendererPlugin_sivicHumanDisplay with type sivicHumanDisplay
+editor/_RendererPlugin_sivicHumanDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicHumanDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicHumanDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicHumanDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicHumanDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicHumanDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicHumanDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicHumanDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicHumanDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicHumanDisplay.SetShowTrackLeft 1
+editor/_RendererPlugin_sivicHumanDisplay.SetShowTrackCenter 1
+editor/_RendererPlugin_sivicHumanDisplay.SetShowTrackRight 1
+editor/_RendererPlugin_sivicHumanDisplay.SetShowPath 1
+editor/_RendererPlugin_sivicHumanDisplay.SetZShift 0.1000000
+editor/_RendererPlugin_sivicHumanDisplay.SetColorPath 0 255 0 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorTrkCenter 0 255 255 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorTrkLeft 0 0 255 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorTrkRight 255 0 0 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorPathPoints 155 0 100 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorTrkCenterPoints 255 0 0 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorTrkLeftPoints 255 255 0 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetColorTrkRightPoints 255 255 0 255 
+editor/_RendererPlugin_sivicHumanDisplay.SetPointSize 1.0000000
+editor/_RendererPlugin_sivicHumanDisplay.SetShowWalkingZone 0
+
+# Object editor/_RendererPlugin_sivicInclinometerDisplay with type sivicInclinometerDisplay
+editor/_RendererPlugin_sivicInclinometerDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicInclinometerDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicInclinometerDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicInclinometerDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicInclinometerDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicInclinometerDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicInclinometerDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicInclinometerDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicInclinometerDisplay.SetDoNotRender	0
+
+# Object editor/_RendererPlugin_sivicLightSourceDisplay with type sivicLightSourceDisplay
+editor/_RendererPlugin_sivicLightSourceDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicLightSourceDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicLightSourceDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicLightSourceDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicLightSourceDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicLightSourceDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicLightSourceDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicLightSourceDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicLightSourceDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicLightSourceDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicLightSourceDisplay.SetWireframe 0
+
+# Object editor/_RendererPlugin_sivicRadarHUD with type sivicRadarHUD
+editor/_RendererPlugin_sivicRadarHUD.SetDisabled	0
+editor/_RendererPlugin_sivicRadarHUD.SetPersistent	1
+editor/_RendererPlugin_sivicRadarHUD.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicRadarHUD.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicRadarHUD.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicRadarHUD.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicRadarHUD.SetCastShadows	0
+editor/_RendererPlugin_sivicRadarHUD.SetRenderOrder	5.0000000
+editor/_RendererPlugin_sivicRadarHUD.SetDoNotRender	0
+editor/_RendererPlugin_sivicRadarHUD.SetLobePlot 1
+editor/_RendererPlugin_sivicRadarHUD.SetLogDisplay 1
+editor/_RendererPlugin_sivicRadarHUD.SetDisplayResolution 1.0000000
+
+# Object editor/_RendererPlugin_sivicRadarSimpleDisplay with type sivicRadarSimpleDisplay
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicRadarSimpleDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicRadarSimpleDisplay.SetDoNotRender	0
+
+# Object editor/_RendererPlugin_sivicRangefinderDisplay with type sivicRangefinderDisplay
+editor/_RendererPlugin_sivicRangefinderDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicRangefinderDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicRangefinderDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicRangefinderDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicRangefinderDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicRangefinderDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicRangefinderDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicRangefinderDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicRangefinderDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicRangefinderDisplay.SetShowAll 1
+editor/_RendererPlugin_sivicRangefinderDisplay.SetWireframe 0
+
+# Object editor/_RendererPlugin_sivicRCSDisplay with type sivicRCSDisplay
+editor/_RendererPlugin_sivicRCSDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicRCSDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicRCSDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicRCSDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicRCSDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicRCSDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicRCSDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicRCSDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicRCSDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicRCSDisplay.SetShowAll 0
+editor/_RendererPlugin_sivicRCSDisplay.SetWireframe 0
+
+# Object editor/_RendererPlugin_sivicTrajectoryDisplay with type sivicTrajectoryDisplay
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicTrajectoryDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetDoNotRender	0
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetPrecision 8
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetPathColor 0.2000000 0.6000000 0.5000000 1.0000000
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetPointsColor 0.0000000 0.5000000 0.8000000 1.0000000
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetShowPath 1
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetShowPoints 1
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetShowOrientation 1
+editor/_RendererPlugin_sivicTrajectoryDisplay.SetPointSize 0.0800000
+
+# Object editor/_RendererPlugin_sivicUltrasonicSensorDisplay with type sivicUltrasonicSensorDisplay
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetDisabled	0
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetPersistent	1
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetLocalPosition	0.0000000 0.0000000 0.0000000
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetLocalScale	1.0000000 1.0000000 1.0000000
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetCastShadows	0
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetRenderOrder	4.0000000
+editor/_RendererPlugin_sivicUltrasonicSensorDisplay.SetDoNotRender	0
+
+# Object sky_bluedream with type sivicPackage
+sky_bluedream.SetDisabled	0
+sky_bluedream.SetLocalPosition	0.0000000 0.0000000 0.0000000
+sky_bluedream.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#sky_bluedream.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+sky_bluedream.SetLocalScale	1.0000000 1.0000000 1.0000000
+sky_bluedream.SetPackageData	Sky_bluedream.zip
+
+# Object sky_bluedream/sky with type mgSkyBoxActor
+sky_bluedream/sky.AddProperty	ColorLabel	mgColor	0 176 240 255
+sky_bluedream/sky.SetDisabled	0
+sky_bluedream/sky.SetLocalPosition	0.0000000 0.0000000 0.0000000
+sky_bluedream/sky.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#sky_bluedream/sky.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+sky_bluedream/sky.SetLocalScale	1.0000000 1.0000000 1.0000000
+sky_bluedream/sky.SetCastShadows	0
+sky_bluedream/sky.SetRenderOrder	-1.0000000
+sky_bluedream/sky.SetDoNotRender	0
+sky_bluedream/sky.SetMesh skybox/bluedream
+
+# Object sun with type sivicPackage
+sun.SetDisabled	0
+sun.SetLocalPosition	0.0000000 0.0000000 0.0000000
+sun.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#sun.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+sun.SetLocalScale	1.0000000 1.0000000 1.0000000
+sun.SetPackageData	Sun.zip
+
+# Object sun/sky_ref with type mgPositionable
+sun/sky_ref.SetDisabled	0
+sun/sky_ref.SetLocalPosition	0.0000000 0.0000000 0.0000000
+sun/sky_ref.SetLocalRotation	90.0000000 0.0000000 0.0000000
+#sun/sky_ref.SetLocalRotationAngles	89.9999924 -0.0000000 0.0000000
+sun/sky_ref.SetLocalScale	1.0000000 1.0000000 1.0000000
+
+# Object sun/sun with type mgLightSource
+sun/sun.AddProperty	LightType	string	sun
+sun/sun.SetDisabled	0
+sun/sun.MakeChildOf sun/sky_ref
+sun/sun.SetLocalPosition	0.0000000 100000.0000000 0.0000000
+sun/sun.SetLocalRotation	-90.0000000 0.0000000 0.0000000
+#sun/sun.SetLocalRotationAngles	-89.9999924 0.0000000 0.0000000
+sun/sun.SetLocalScale	1.0000000 1.0000000 1.0000000
+sun/sun.SetColor	1.0000000 1.0000000 1.0000000 1.0000000
+sun/sun.SetIntensityScale	1.0000000
+sun/sun.SetAttenuationFactors	1.0000000 0.0000000 0.0000000
+sun/sun.SetCastShadows	1
+
+# Object ground_horsering with type sivicPackage
+ground_horsering.SetDisabled	0
+ground_horsering.SetLocalPosition	0.0000000 0.0000000 0.0000000
+ground_horsering.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#ground_horsering.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+ground_horsering.SetLocalScale	1.0000000 1.0000000 1.0000000
+ground_horsering.SetPackageData	Ground_horsering.zip
+
+# Object ground_horsering/horsering_ground with type sivicBSPActor
+ground_horsering/horsering_ground.AddProperty	BaseSurfaceGrip	float	1
+ground_horsering/horsering_ground.AddProperty	ColorLabel	mgColor	128 128 128 255
+ground_horsering/horsering_ground.AddProperty	InfrastructureType	string	road
+ground_horsering/horsering_ground.AddProperty	layers	mgLayers	16777215
+ground_horsering/horsering_ground.SetDisabled	0
+ground_horsering/horsering_ground.SetLocalPosition	1.3616791 -0.2028198 0.0000038
+ground_horsering/horsering_ground.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#ground_horsering/horsering_ground.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+ground_horsering/horsering_ground.SetLocalScale	1.0000000 1.0000000 1.0000000
+ground_horsering/horsering_ground.SetCastShadows	0
+ground_horsering/horsering_ground.SetRenderOrder	0.0000000
+ground_horsering/horsering_ground.SetDoNotRender	0
+ground_horsering/horsering_ground.SetBSPData horsering1210bis.bsp
+ground_horsering/horsering_ground.SetRenderingDepth 8
+ground_horsering/horsering_ground.SetAmbientOcclusionMap 
+ground_horsering/horsering_ground.SetNearClippingDistance 0.0000000
+ground_horsering/horsering_ground.SetFarClippingDistance 
+
+# Object Vehicle with type sivicPackage
+Vehicle.SetDisabled	0
+Vehicle.SetLocalPosition	0.0000000 0.0000000 0.0000000
+Vehicle.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#Vehicle.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+Vehicle.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle.SetPackageData	Audi-A4_Dynamic.zip
+
+# Object Vehicle/vc with type sivicCarViewport
+Vehicle/vc.SetPeriod 0.0400000
+Vehicle/vc.SetOMGDDSEnabled false
+Vehicle/vc.SetFileName vc
+Vehicle/vc.SetExtension .cap
+Vehicle/vc.Off 
+Vehicle/vc.SetRecordEnabled false
+Vehicle/vc.SetExportFormat tsv
+Vehicle/vc.SetDisabled	0
+Vehicle/vc.SetViewport 0 0 100 61
+# Backgound color for Vehicle/vc: 
+Vehicle/vc.SetTransparency true
+Vehicle/vc.SetWatermark 0.0000000
+Vehicle/vc.SetBackgroundColor 1.0000000 0.0000000 0.0000000 0.0000000
+Vehicle/vc.SetPosition 0 0
+Vehicle/vc.SetSize 100 61
+Vehicle/vc.SetDigitWidth 0.1500000
+Vehicle/vc.SetPositionUnit 0.6000000
+Vehicle/vc.SetDataColor 0.0000000 0.0000000 0.0000000 1.0000000
+Vehicle/vc.SetCar Vehicle/car
+
+# Object Vehicle/chassis with type sivicMeshActor
+Vehicle/chassis.AddProperty	ColorLabel	mgColor	255 0 0 255
+Vehicle/chassis.AddProperty	VehicleModel	string	Audi_A4
+Vehicle/chassis.AddProperty	VehicleType	string	car
+Vehicle/chassis.AddProperty	layers	mgLayers	16777215
+Vehicle/chassis.SetDisabled	0
+Vehicle/chassis.SetLocalPosition	-286.9259033 301.4790344 0.2919875
+Vehicle/chassis.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#Vehicle/chassis.SetLocalRotationAngles	-0.0076885 0.0011365 0.0000204
+Vehicle/chassis.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/chassis.SetCastShadows	0
+Vehicle/chassis.SetRenderOrder	1.0000000
+Vehicle/chassis.SetDoNotRender	0
+Vehicle/chassis.SetMesh	A4/A4_Dynamic
+Vehicle/chassis.SetCatchShadows	1
+Vehicle/chassis.SetOccludeAmbient	0
+Vehicle/chassis.SetCameraAligned	0
+Vehicle/chassis.OverrideMaterial	Body Body_Green
+
+# Object Vehicle/fl with type sivicMeshActor
+Vehicle/fl.AddProperty	ColorLabel	mgColor	255 0 0 255
+Vehicle/fl.AddProperty	layers	mgLayers	16777215
+Vehicle/fl.SetDisabled	0
+Vehicle/fl.MakeChildOf Vehicle/chassis
+Vehicle/fl.SetLocalPosition	2.6600037 0.7500305 -0.0209332
+Vehicle/fl.SetLocalRotation	-0.0000000 -60.0895729 -0.0000000
+#Vehicle/fl.SetLocalRotationAngles	0.0000000 -60.0895576 0.0000000
+Vehicle/fl.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/fl.SetCastShadows	0
+Vehicle/fl.SetRenderOrder	1.0000000
+Vehicle/fl.SetDoNotRender	0
+Vehicle/fl.SetMesh	A4_wheel/left_wheel
+Vehicle/fl.SetCatchShadows	1
+Vehicle/fl.SetOccludeAmbient	0
+Vehicle/fl.SetCameraAligned	0
+
+# Object Vehicle/fr with type sivicMeshActor
+Vehicle/fr.AddProperty	ColorLabel	mgColor	255 0 0 255
+Vehicle/fr.AddProperty	layers	mgLayers	16777215
+Vehicle/fr.SetDisabled	0
+Vehicle/fr.MakeChildOf Vehicle/chassis
+Vehicle/fr.SetLocalPosition	2.6600037 -0.7499695 -0.0211345
+Vehicle/fr.SetLocalRotation	-0.0000000 -61.8890266 -0.0000000
+#Vehicle/fr.SetLocalRotationAngles	0.0000000 -61.8890114 0.0000000
+Vehicle/fr.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/fr.SetCastShadows	0
+Vehicle/fr.SetRenderOrder	1.0000000
+Vehicle/fr.SetDoNotRender	0
+Vehicle/fr.SetMesh	A4_wheel/right_wheel
+Vehicle/fr.SetCatchShadows	1
+Vehicle/fr.SetOccludeAmbient	0
+Vehicle/fr.SetCameraAligned	0
+
+# Object Vehicle/rl with type sivicMeshActor
+Vehicle/rl.AddProperty	ColorLabel	mgColor	255 0 0 255
+Vehicle/rl.AddProperty	layers	mgLayers	16777215
+Vehicle/rl.SetDisabled	0
+Vehicle/rl.MakeChildOf Vehicle/chassis
+Vehicle/rl.SetLocalPosition	0.0000305 0.7500305 -0.0209772
+Vehicle/rl.SetLocalRotation	-0.0000000 -152.7871552 -0.0000000
+#Vehicle/rl.SetLocalRotationAngles	180.0000000 -27.2128448 180.0000000
+Vehicle/rl.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/rl.SetCastShadows	0
+Vehicle/rl.SetRenderOrder	1.0000000
+Vehicle/rl.SetDoNotRender	0
+Vehicle/rl.SetMesh	A4_wheel/left_wheel
+Vehicle/rl.SetCatchShadows	1
+Vehicle/rl.SetOccludeAmbient	0
+Vehicle/rl.SetCameraAligned	0
+
+# Object Vehicle/rr with type sivicMeshActor
+Vehicle/rr.AddProperty	ColorLabel	mgColor	255 0 0 255
+Vehicle/rr.AddProperty	layers	mgLayers	16777215
+Vehicle/rr.SetDisabled	0
+Vehicle/rr.MakeChildOf Vehicle/chassis
+Vehicle/rr.SetLocalPosition	0.0000305 -0.7499695 -0.0211785
+Vehicle/rr.SetLocalRotation	-0.0000000 -152.3376465 -0.0000000
+#Vehicle/rr.SetLocalRotationAngles	180.0000000 -27.6623669 180.0000000
+Vehicle/rr.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/rr.SetCastShadows	0
+Vehicle/rr.SetRenderOrder	1.0000000
+Vehicle/rr.SetDoNotRender	0
+Vehicle/rr.SetMesh	A4_wheel/right_wheel
+Vehicle/rr.SetCatchShadows	1
+Vehicle/rr.SetOccludeAmbient	0
+Vehicle/rr.SetCameraAligned	0
+
+# Object Vehicle/CollisionModel with type sivicMeshActor
+Vehicle/CollisionModel.AddProperty	layers	mgLayers	16777215
+Vehicle/CollisionModel.SetDisabled	0
+Vehicle/CollisionModel.MakeChildOf Vehicle/chassis
+Vehicle/CollisionModel.SetLocalPosition	0.0000000 0.0000000 0.0000000
+Vehicle/CollisionModel.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#Vehicle/CollisionModel.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+Vehicle/CollisionModel.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/CollisionModel.SetCastShadows	0
+Vehicle/CollisionModel.SetRenderOrder	1.0000000
+Vehicle/CollisionModel.SetDoNotRender	1
+Vehicle/CollisionModel.SetMesh	audi_A4_rcs/audi_A4_rcs
+Vehicle/CollisionModel.SetCatchShadows	1
+Vehicle/CollisionModel.SetOccludeAmbient	0
+Vehicle/CollisionModel.SetCameraAligned	0
+
+# Object Vehicle/RCS with type sivicRCS
+Vehicle/RCS.SetDisabled	0
+Vehicle/RCS.MakeChildOf Vehicle/chassis
+Vehicle/RCS.SetLocalPosition	1.5000000 0.0000000 0.0000000
+Vehicle/RCS.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#Vehicle/RCS.SetLocalRotationAngles	0.0000000 0.0000000 0.0000000
+Vehicle/RCS.SetLocalScale	1.0000000 1.0000000 1.0000000
+Vehicle/RCS.SetCollisionModel Vehicle/CollisionModel
+Vehicle/RCS.ClearLobes
+Vehicle/RCS.AddLobe 1.0000000	1.0000000	-1.0000000 0.0000000 0.0000000 0.0000000	0.0000000 -1.0000000 0.0000000 0.0000000	0.0000000 0.0000000 -1.0000000 0.0000000	0.0000000 0.0000000 0.0000000 0.0000000
+Vehicle/RCS.SetRCSData rcs/biw_work3_monostatic.rcs
+Vehicle/RCS.SetPolicy table
+Vehicle/RCS.SetSymetryX none
+Vehicle/RCS.SetSymetryY none
+Vehicle/RCS.SetSymetryZ none
+
+# Object PositionVehicle with type mgPositionable
+PositionVehicle.SetDisabled	0
+PositionVehicle.MakeChildOf Vehicle/chassis
+PositionVehicle.SetLocalPosition	3.5000000 0.3000000 0.0000000
+PositionVehicle.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#PositionVehicle.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+PositionVehicle.SetLocalScale	1.0000000 1.0000000 1.0000000
+
+# Object radar_1 with type sivicPackage
+radar_1.SetDisabled	0
+radar_1.MakeChildOf Vehicle/chassis
+radar_1.SetLocalPosition	4.0000000 0.0000000 1.0000000
+radar_1.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#radar_1.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+radar_1.SetLocalScale	1.0000000 1.0000000 1.0000000
+radar_1.SetPackageData	RadarLevel1.zip
+
+# Object radar_1/em with type sivicEMChannel
+radar_1/em.SetPeriod 0.1000000
+radar_1/em.SetOMGDDSEnabled false
+radar_1/em.SetFileName em
+radar_1/em.SetExtension .cap
+radar_1/em.On 
+radar_1/em.SetRecordEnabled false
+radar_1/em.SetExportFormat tsv
+radar_1/em.SetDisabled	0
+radar_1/em.SetEmitter radar_1/radar
+radar_1/em.SetReceiver radar_1/radar
+radar_1/em.SetReceiverArea 1.0000000
+radar_1/em.SetMaxBounces 1
+radar_1/em.SetMaxNumPaths 10
+radar_1/em.SetWaveVelocity 299792458.0000000
+radar_1/em.SetTransmitterAxisConvention 0
+radar_1/em.SetReceiverAxisConvention 0
+
+# Object radar_1/radar with type sivicRadar
+radar_1/radar.SetDisabled	0
+radar_1/radar.SetLocalPosition	0.0000000 0.0000000 0.0000000
+radar_1/radar.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#radar_1/radar.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+radar_1/radar.SetLocalScale	1.0000000 1.0000000 1.0000000
+radar_1/radar.SetCollisionModel 
+radar_1/radar.ClearLobes
+radar_1/radar.AddLobe 1.0000000	0.0000000	1.0000000 0.0000000 0.0000000 0.0000000	0.0000000 1.0000000 0.0000000 0.0000000	0.0000000 0.0000000 1.0000000 0.0000000	0.0000000 0.0000000 0.0000000 0.0000000
+radar_1/radar.SetRCSData 
+radar_1/radar.SetPolicy lobes
+radar_1/radar.SetSymetryX none
+radar_1/radar.SetSymetryY none
+radar_1/radar.SetSymetryZ none
+radar_1/radar.SetPeriod 0.1000000
+radar_1/radar.SetOMGDDSEnabled true
+radar_1/radar.SetFileName radar
+radar_1/radar.SetExtension .cap
+radar_1/radar.On 
+radar_1/radar.SetRecordEnabled false
+radar_1/radar.SetExportFormat tsv
+radar_1/radar.SetPropagationChannel radar_1/em
+radar_1/radar.SetDebugPlugin 0
+radar_1/radar.SetAntennaType 1
+radar_1/radar.SetModellingMode 0
+radar_1/radar.SetComputationMode 1
+radar_1/radar.SetDetectionMode 1
+radar_1/radar.SetModulation 3
+radar_1/radar.SetCarrierFrequency 76.5000000
+radar_1/radar.SetBandWidth 300.0000000
+radar_1/radar.SetSampleRate 40.0000000
+radar_1/radar.SetPeriodDuration 0.0000100
+radar_1/radar.SetChirpDuration 1.0000000
+radar_1/radar.SetListenningDuration 0.0018000
+radar_1/radar.SetThresholdDetection -500.0000000
+radar_1/radar.SetAntennaMaxGain 24.0000000
+radar_1/radar.SetAntennaStepAngle 0.5000000
+radar_1/radar.SetAntennaOpenAngle 120.0000000
+radar_1/radar.SetUseTracking 0
+radar_1/radar.SetNbTargetsMax 16
+radar_1/radar.SetFixSweepingGhostTargets 1
+radar_1/radar.SetSweepingFixDistanceThreshold 1.0000000
+radar_1/radar.SetSweepingFixAngleThreshold 5.0000000
+radar_1/radar.SetSweepingFixSpeedThreshold 5.0000000
+
+# Object radar_1/view with type sivicRadarViewport
+radar_1/view.SetDisabled	0
+radar_1/view.SetViewport 0 0 640 320
+radar_1/view.SetRadar radar_1/radar
+radar_1/view.SetViewingRange 200.0000000
+radar_1/view.SetDisplayTargetWidth 1.0000000
+radar_1/view.SetBackgroundColor 0.5000000 0.0000000 0.0000000 1.0000000
+radar_1/view.SetAxisColor 0.7500000 0.7500000 0.7500000 1.0000000
+radar_1/view.SetFontSize 12
+radar_1/view.SetViewportOpacity 0.2500000
+radar_1/view.SetDataColor 1.0000000 1.0000000 0.0000000 1.0000000
+radar_1/view.SetAxisAngleStep 30.0000000
+radar_1/view.SetAxisDistanceStep 25.0000000
+
+# Object Vehicle/car with type sivicCar
+Vehicle/car.AddProperty	ColorLabel	mgColor	255 0 0 255
+Vehicle/car.SetDisabled	0
+# SetCarDescriptionData will be use to load resource used to override car body color.
+Vehicle/car.SetCarBodyColorMaterialData body_color_material.conf
+Vehicle/car.SetCarBodyColor Green
+# Meshes for Vehicle/car: 
+Vehicle/car.SetChassis Vehicle/chassis
+Vehicle/car.SetWheelFL Vehicle/fl
+Vehicle/car.SetWheelFR Vehicle/fr
+Vehicle/car.SetWheelRL Vehicle/rl
+Vehicle/car.SetWheelRR Vehicle/rr
+Vehicle/car.SetEnableWheelScale false
+# Controllers for Vehicle/car (analogical inputs): 
+Vehicle/car.SetAccCtrl car1_ThrottlePedal
+Vehicle/car.SetAccCtrlDuration 0.0001000
+Vehicle/car.SetClutchCtrl car1_ClutchPedal
+Vehicle/car.SetClutchCtrlDuration 0.0001000
+Vehicle/car.SetBrakeCtrl car1_BrakePedal
+Vehicle/car.SetBrakeCtrlDuration 0.0001000
+Vehicle/car.SetSteerCtrl car1_SteeringWheelAngle
+Vehicle/car.SetSteerCtrlDuration 0.0001000
+# Controllers for Vehicle/car (binary inputs): 
+Vehicle/car.SetUpGearCtrl car1_UpGear
+Vehicle/car.SetDownGearCtrl car1_DownGear
+Vehicle/car.SetUpKeyCtrl car1_UpKey
+Vehicle/car.SetDownKeyCtrl car1_DownKey
+Vehicle/car.SetStopCtrl car1_Stop
+Vehicle/car.SetUseAdaptativeSteeringSpeed 1
+Vehicle/car.SetUseRoadAsGround 0
+Vehicle/car.SetUseStopOnObstacles 0
+Vehicle/car.SetMass 1374.0000000
+Vehicle/car.SetWheelsSpacing 1.3300000 1.3300000 0.7500000 0.7500000
+#Vehicle/car.SetWheelbase 2.6600001
+#Vehicle/car.SetFrontTrack 1.5000000
+#Vehicle/car.SetRearTrack 1.5000000
+Vehicle/car.SetIgnitionKey 1
+Vehicle/car.SetGearShift 1
+Vehicle/car.SetAutoClutch 1
+Vehicle/car.SetPosition -285.5958862 301.4790649 0.5627109
+Vehicle/car.SetAngle -0.0076885 0.0011365 0.0000204
+Vehicle/car.SetGroundTireAltitude 0.0001534 0.0001534 0.0001622 0.0001622
+# Shock absorbers parameters for Vehicle/car: 
+Vehicle/car.SetShockAbsorberFL 20000.0000000 6000.0000000
+Vehicle/car.SetShockAbsorberFR 20000.0000000 6000.0000000
+Vehicle/car.SetShockAbsorberRL 20000.0000000 6000.0000000
+Vehicle/car.SetShockAbsorberRR 20000.0000000 6000.0000000
+# Wheels parameters for Vehicle/car: 
+Vehicle/car.SetWheelsHeight 0.0400000 0.0300000
+Vehicle/car.SetTireCode 225.0000000 18.1102009 18.1102009
+Vehicle/car.SetTireGripFR 0.9000000
+Vehicle/car.SetTireGripFL 0.9000000
+Vehicle/car.SetTireGripRR 0.9000000
+Vehicle/car.SetTireGripRL 0.9000000
+# Masses and inertia for Vehicle/car: 
+Vehicle/car.SetCarMasses 1500.0000000 1500.0000000 1340.0000000
+Vehicle/car.SetCarMomentOfInertia 305.0000000 2000.0000000 2454.0000000
+Vehicle/car.SetTireMass 18.0000000
+Vehicle/car.SetTireMomentOfInertia 1.2825000
+Vehicle/car.SetMaxOrderAcc 790.0000000
+Vehicle/car.SetMaxOrderBrk 1250.0000000
+Vehicle/car.SetMaxOrderSteer 0.5200000
+Vehicle/car.SetMaxSpeedSteer 0.7853982
+Vehicle/car.SetBrakeTorqueDistributionFL 0.6000000
+Vehicle/car.SetBrakeTorqueDistributionFR 0.6000000
+Vehicle/car.SetBrakeTorqueDistributionRL 0.4000000
+Vehicle/car.SetBrakeTorqueDistributionRR 0.4000000
+# Cruise control parameters for Vehicle/car: 
+Vehicle/car.SetCruiseControlPosition 0
+Vehicle/car.SetSpeedControl 0.0000000
+Vehicle/car.SetSpeedLimit 50.0040000
+# Trajectory parameters for Vehicle/car: 
+Vehicle/car.SetLoop 1
+Vehicle/car.SetCruiseControlPosition 0
+Vehicle/car.SetSpeedControl 0.0000000
+Vehicle/car.SetSpeedLimit 50.0040000
+Vehicle/car.SetFileNameTrajectory 
+Vehicle/car.SetExtensionTrajectory .trj
+Vehicle/car.SetFileNameTrack 
+Vehicle/car.SetExtensionTrack .trk
+Vehicle/car.SetMode 0
+Vehicle/car.SetSubMode 0
+Vehicle/car.SetPeriod 0.0050000
+Vehicle/car.SetOMGDDSEnabled true
+Vehicle/car.SetCarDescriptionCommunicationMode 0
+Vehicle/car.SetCarOrdersCommunicationMode 3
+Vehicle/car.SetCarEnvironmentCommunicationMode 1
+# Car dynamic model for Vehicle/car (0: Internal ; 1: External): 
+Vehicle/car.SetModelSelector 0
+# Car dynamic model for Vehicle/car, CarSim parameters (if used as External dynamic model): 
+Vehicle/car.SetSimfileName simfile.sim
+Vehicle/car.SetSimfileLocation C:/Users/Public/Documents/CarSim2016.1_Data/
+Vehicle/car.SetSteerAngle 0.0000000
+# Initials parameters for Vehicle/car: 
+Vehicle/car.SetInitTrajectoryIndex 0
+Vehicle/car.SetInitCurrentLoop 1
+Vehicle/car.SetInitPosition -285.6487122 301.4790649 0.7998296
+Vehicle/car.SetInitAngle -0.0070552 0.0010425 0.0000204
+Vehicle/car.SetInitSpeed 0.0000000
+Vehicle/car.SetInitSpeedControl 0.0000000
+Vehicle/car.SetInitSpeedLimit 50.0040000
+Vehicle/car.SetACCSpeed 0.0000000
+Vehicle/car.SetPIDKp 1000.0000000
+Vehicle/car.SetPIDKi 0.7000000
+Vehicle/car.SetPIDKd 0.0000000
+Vehicle/car.SetLateralCorrectionTimeTarget 4.0000000
+Vehicle/car.SetControlParameters 0.5000000 70.0000000 130.0000000 1.0000000 0.2000000
+
+# Object distance with type sivicDistanceObserver
+distance.SetPeriod 0.0400000
+distance.SetOMGDDSEnabled false
+distance.SetFileName distance
+distance.SetExtension .cap
+distance.On 
+distance.SetRecordEnabled true
+distance.SetExportFormat csv
+distance.SetDisabled	0
+distance.SetPrecision 2
+distance.SetObject1 PositionVehicle
+distance.SetObject2 TargetPosition
+
+# Object displaydistance with type sivicDistanceObserverDisplay
+displaydistance.SetDisabled	0
+displaydistance.SetPersistent	1
+displaydistance.SetLocalPosition	0.0000000 0.0000000 0.0000000
+displaydistance.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#displaydistance.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+displaydistance.SetLocalScale	1.0000000 1.0000000 1.0000000
+displaydistance.SetCastShadows	0
+displaydistance.SetRenderOrder	4.0000000
+displaydistance.SetDoNotRender	0
+displaydistance.SetShowAll 0
+displaydistance.SetWireframe 1
+displaydistance.SetShowObjectIndicator 0
+displaydistance.SetShowMeasurePoint 1
+displaydistance.SetColor 0.0000000 0.0000000 1.0000000
+displaydistance.SetLineWidth 5.0000000
+
+# Object TargetPosition with type mgPositionable
+TargetPosition.SetDisabled	0
+TargetPosition.SetLocalPosition	-171.7978058 301.5697937 0.3200000
+TargetPosition.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#TargetPosition.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+TargetPosition.SetLocalScale	1.0000000 1.0000000 1.0000000
+
+# Object DistanceViewPort with type sivicDistanceObserverViewport
+DistanceViewPort.SetPeriod 0.0400000
+DistanceViewPort.SetOMGDDSEnabled false
+DistanceViewPort.SetFileName DistanceViewPort
+DistanceViewPort.SetExtension .cap
+DistanceViewPort.On 
+DistanceViewPort.SetRecordEnabled false
+DistanceViewPort.SetExportFormat tsv
+DistanceViewPort.SetDisabled	0
+DistanceViewPort.SetViewport 200 0 100 23
+# Backgound color for DistanceViewPort: 
+DistanceViewPort.SetTransparency false
+DistanceViewPort.SetWatermark 0.1000000
+DistanceViewPort.SetBackgroundColor 0.3333333 0.3333333 1.0000000 0.1000000
+DistanceViewPort.SetPosition 200 0
+DistanceViewPort.SetSize 100 23
+DistanceViewPort.SetDigitWidth 0.1400000
+DistanceViewPort.SetPositionUnit 0.6000000
+DistanceViewPort.SetDataColor 0.0000000 0.0000000 0.0000000 1.0000000
+
+# Object car_target1 with type sivicPackage
+car_target1.SetDisabled	0
+car_target1.SetLocalPosition	0.0000000 0.0000000 0.3000000
+car_target1.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#car_target1.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+car_target1.SetLocalScale	1.0000000 1.0000000 1.0000000
+car_target1.SetPackageData	LD_Standard_Car_Black.zip
+
+# Object car_target1/LD_Standard_Car_Black with type sivicMeshActor
+car_target1/LD_Standard_Car_Black.AddProperty	ColorLabel	mgColor	255 0 0 255
+car_target1/LD_Standard_Car_Black.AddProperty	layers	mgLayers	16777215
+car_target1/LD_Standard_Car_Black.SetDisabled	0
+car_target1/LD_Standard_Car_Black.SetLocalPosition	-173.8745728 301.7395020 0.0000000
+car_target1/LD_Standard_Car_Black.SetLocalRotation	0.0000000 0.0000000 90.0000000
+#car_target1/LD_Standard_Car_Black.SetLocalRotationAngles	0.0000000 -0.0000000 89.9999924
+car_target1/LD_Standard_Car_Black.SetLocalScale	1.0000000 1.0000000 1.0000000
+car_target1/LD_Standard_Car_Black.SetCastShadows	0
+car_target1/LD_Standard_Car_Black.SetRenderOrder	1.0000000
+car_target1/LD_Standard_Car_Black.SetDoNotRender	0
+car_target1/LD_Standard_Car_Black.SetMesh	LD_Standard_Car_gen
+car_target1/LD_Standard_Car_Black.SetCatchShadows	1
+car_target1/LD_Standard_Car_Black.SetOccludeAmbient	0
+car_target1/LD_Standard_Car_Black.SetCameraAligned	0
+car_target1/LD_Standard_Car_Black.OverrideMaterial	LD_Standard_Car/Body LD_Standard_Car/Body_Black
+
+# Object car_target1/CollisionModel with type sivicMeshActor
+car_target1/CollisionModel.AddProperty	layers	mgLayers	16777215
+car_target1/CollisionModel.SetDisabled	0
+car_target1/CollisionModel.MakeChildOf car_target1/LD_Standard_Car_Black
+car_target1/CollisionModel.SetLocalPosition	0.0000000 0.0000000 0.0000000
+car_target1/CollisionModel.SetLocalRotation	0.0000000 0.0000000 -90.0000000
+#car_target1/CollisionModel.SetLocalRotationAngles	0.0000000 0.0000000 -89.9999924
+car_target1/CollisionModel.SetLocalScale	1.0000000 1.0000000 1.0000000
+car_target1/CollisionModel.SetCastShadows	0
+car_target1/CollisionModel.SetRenderOrder	1.0000000
+car_target1/CollisionModel.SetDoNotRender	1
+car_target1/CollisionModel.SetMesh	standard_rcs/standard_rcs
+car_target1/CollisionModel.SetCatchShadows	1
+car_target1/CollisionModel.SetOccludeAmbient	0
+car_target1/CollisionModel.SetCameraAligned	0
+
+# Object car_target1/RCS with type sivicRCS
+car_target1/RCS.SetDisabled	0
+car_target1/RCS.MakeChildOf car_target1/LD_Standard_Car_Black
+car_target1/RCS.SetLocalPosition	0.0000000 -1.5000000 0.0000000
+car_target1/RCS.SetLocalRotation	0.0000000 0.0000000 0.0000000
+#car_target1/RCS.SetLocalRotationAngles	0.0000000 -0.0000000 0.0000000
+car_target1/RCS.SetLocalScale	1.0000000 1.0000000 1.0000000
+car_target1/RCS.SetCollisionModel car_target1/CollisionModel
+car_target1/RCS.ClearLobes
+car_target1/RCS.AddLobe 1.0000000	1.0000000	-1.0000000 0.0000000 0.0000000 0.0000000	0.0000000 -1.0000000 0.0000000 0.0000000	0.0000000 0.0000000 -1.0000000 0.0000000	0.0000000 0.0000000 0.0000000 0.0000000
+car_target1/RCS.SetRCSData biw_work3_monostatic.rcs
+car_target1/RCS.SetPolicy table
+car_target1/RCS.SetSymetryX none
+car_target1/RCS.SetSymetryY none
+car_target1/RCS.SetSymetryZ none
+
+# Object event with type sivicEvent
+event.SetPeriod 0.0400000
+event.SetOMGDDSEnabled true
+event.SetFileName event
+event.SetExtension .cap
+event.On 
+event.SetRecordEnabled false
+event.SetExportFormat tsv
+event.SetDisabled	0
+event.SetPrecision 2
+event.SetEventFile eventaeb/event.script
+event.SetIterationNbr 1
+# Event parameters for "TYPE_TIME_TRJ" mode:
+event.SetObject 
+event.SetTimeEvent 0.0000000
+# Event parameters for "TYPE_TIMESIVIC" mode:
+# event.SetEvent event timesivic 0.0000000
+event.SetObject event
+event.SetTimePeriodEvent 0.0000000
+# Event parameters for "TYPE_INDEX_TRJ" mode:
+event.SetObject 
+event.SetEventIndex 0
+# Event parameters for "TYPE_POSITION" mode:
+event.SetObject 
+event.SetPositionEvent 0.0000000 0.0000000 0.0000000
+event.SetDistanceToPoint 1.0000000
+# Event parameters for "TYPE_DISTANCE" mode:
+event.SetObject 
+event.SetTargetObject 
+event.SetDistanceToObject 1.0000000
+# Event parameters for "TYPE_DDSLESS" and "TYPE_DDSGREATER" mode:
+event.SetShareName localhost:4242/
+# event types ddsless and ddsgreater not supported at export.
+event.SetThresholdValue 1.0000000
+# Recording event type:
+# TYPE_TIME_TRJ = 1, TYPE_TIMESIVIC = 2, TYPE_INDEX_TRJ = 3, TYPE_POSITION = 4, TYPE_DISTANCE = 5, TYPE_COMP_VALUE = 6, TYPE_COMP_PROP = 7, TYPE_DDSLESS = 20, TYPE_DDSGREATER = 21
+event.SetTypeEvent 24
+
+# Object time with type sivicTime
+time.SetPeriod 0.0400000
+time.SetOMGDDSEnabled false
+time.SetFileName time
+time.SetExtension .cap
+time.Off 
+time.SetRecordEnabled false
+time.SetExportFormat tsv
+time.SetDisabled	0
+time.SetSynchro 0
+
+
+
+# Viewport ordering
+
+editor/view.ToFront
+Vehicle/vc.ToFront
+DistanceViewPort.ToFront
+radar_1/view.ToFront
