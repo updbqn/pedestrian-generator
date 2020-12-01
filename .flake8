@@ -1,5 +1,6 @@
 [flake8]
 select =
+  ANN,
   B,
   B9,
   BLK,
@@ -7,5 +8,8 @@ select =
   E,
   F,
   W
-ignore = E203,E501
+ignore = 
+  ANN101,
+  E203,
+  E501
 max-line-length = 80
