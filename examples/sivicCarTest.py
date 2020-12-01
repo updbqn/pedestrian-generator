@@ -1,9 +1,6 @@
 import ProSivicDDS as psvdds
 import ProSiVIC_TCP as psctcp
 import os
-import time
-
-import numpy as np
 
 tcp = psctcp.ProSiVIC_TCP("127.0.0.1", 4444)
 tcp._connect()

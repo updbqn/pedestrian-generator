@@ -1,7 +1,6 @@
 import ProSivicDDS as psv
 import os
 import numpy as np
-from skimage import data
 from skimage.viewer import ImageViewer
 
 # initialise dds communication to Pro-SiVIC object named "camera/cam"
