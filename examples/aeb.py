@@ -9,16 +9,16 @@ tcp._synchro()
 
 #  set  DDS configuration file location
 
-carOrderH = psvdds.carOrderHandler('Vehicle/car')
-carEnvH = psvdds.carEnvironmentHandler('Vehicle/car')
-radarreceiver = psvdds.radarHandler('radar_1/radar')
-eventH = psvdds.eventHandler('event')
+carOrderH = psvdds.carOrderHandler("Vehicle/car")
+carEnvH = psvdds.carEnvironmentHandler("Vehicle/car")
+radarreceiver = psvdds.radarHandler("radar_1/radar")
+eventH = psvdds.eventHandler("event")
 
 tcp._play()
 
 # wait to receive first sample
 order = carOrderH.receive()
-while (order.timestamp == 0):
+while order.timestamp == 0:
     order = carOrderH.receive()
 order.movementOrderMode = psvdds.emovementOrder.speed
 order.speedOrder = 40
@@ -29,8 +29,8 @@ targets = radarreceiver.receive()
 event = eventH.receive()
 # loop until speed is 10m/s is reached
 
-while (True):
-    if (env.speed[0] <= 10):
+while True:
+    if env.speed[0] <= 10:
         env = carEnvH.receive()
         order.movementOrderMode = psvdds.emovementOrder.speed
         order.speedOrder = 40
