@@ -10,6 +10,7 @@ from pedestrian_generator.prosivic.objects.observable_pedestrian import (
     ObservablePedestrian,
 )
 from pedestrian_generator.prosivic.simulation import Simulation
+from pedestrian_generator.utils.timer import Timer
 
 
 FEMALE_PEDESTRIAN_NAME = "female/pedestrian"
@@ -32,6 +33,8 @@ def main(config_path: Path) -> None:
         FEMALE_PEDESTRIAN_NAME, FEMALE_PEDESTRIAN_OBSERVER, simulation
     )
 
+    timer = Timer()
+
     for direction, distance, angle, speed in itertools.product(
         cfg.pedestrian.directions,
         cfg.pedestrian.distances,
@@ -47,6 +50,11 @@ def main(config_path: Path) -> None:
             end_position_y = cfg.left_y
             direction_angle = angle
 
+        print(
+            f"\nRunning configuration start={start_position_y}, end={end_position_y}, distance={distance}, angle={angle}, speed={speed}"
+        )
+        timer.start()
+
         run_scenario_configuration(
             simulation,
             start_position_y,
@@ -56,6 +64,8 @@ def main(config_path: Path) -> None:
             direction_angle,
             speed,
         )
+
+        print(f"DONE: {timer.stop():0.2f}s")
 
 
 def run_scenario_configuration(
@@ -67,10 +77,6 @@ def run_scenario_configuration(
     angle: int,
     speed: int,
 ) -> None:
-
-    print(
-        f"Running configuration start={start_position_y}, end={end_position_y}, distance={distance}, angle={angle}, speed={speed}"
-    )
 
     # TODO: Does z=0 work in all situations?
     pedestrian.set_position(distance, start_position_y, 0)
