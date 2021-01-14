@@ -8,7 +8,7 @@ select =
   E,
   F,
   W
-ignore = 
+extend-ignore = 
   ANN101,
   E203,
   E501
