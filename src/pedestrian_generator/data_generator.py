@@ -95,9 +95,11 @@ def run_scenario_configuration(
 def wait_for_end_condition(
     start_position_y: int, end_position_y: int, pedestrian: ObservablePedestrian
 ) -> None:
-    while (
-        start_position_y < end_position_y
-        and pedestrian.getPosition().y >= end_position_y
-        or pedestrian.getPosition().y <= end_position_y
-    ):
-        pass
+    is_increasing = start_position_y < end_position_y
+
+    if is_increasing:
+        while pedestrian.getPosition().y < end_position_y:
+            pass
+    else:
+        while pedestrian.getPosition().y > end_position_y:
+            pass
