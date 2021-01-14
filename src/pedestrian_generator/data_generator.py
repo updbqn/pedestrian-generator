@@ -1,81 +1,97 @@
 import itertools
-from enum import Enum
-from typing import Any
+from pathlib import Path
+from typing import cast
 
-# .pyd available through PYTHONPATH, see DDS manual
-import ProSivicDDS as psvdds
-
-from pedestrian_generator.prosivic_tcp import ProsivicTCP
-from pedestrian_generator.pedestrian import Pedestrian
+from omegaconf import OmegaConf, DictConfig
 
 
-class Direction(Enum):
-    Left = 1
-    Right = 2
+from pedestrian_generator.direction import Direction
+from pedestrian_generator.prosivic.objects.observable_pedestrian import (
+    ObservablePedestrian,
+)
+from pedestrian_generator.prosivic.simulation import Simulation
 
 
 FEMALE_PEDESTRIAN_NAME = "female/pedestrian"
 FEMALE_PEDESTRIAN_OBSERVER = "female_observer"
-SCRIPT_FILENAME = "scenario1.script"
-DISTANCE_TO_ROAD = 8
-PEDESTRIAN_SPEED = 2
-
-distances = range(20, 160, 10)
-directions = [Direction.Left, Direction.Right]
-angles = range(30, 170, 20)
 
 
-def main() -> None:
-    tcp = ProsivicTCP()
-    tcp.connect()
-    tcp.load(SCRIPT_FILENAME)
-    tcp.synchro()
+def load_config(config_path: Path) -> DictConfig:
+    OmegaConf.register_resolver(
+        "range", lambda start, stop, step: range(int(start), int(stop), int(step))
+    )
+    cfg = OmegaConf.load(config_path)
 
-    female_pedestrian = Pedestrian(FEMALE_PEDESTRIAN_NAME, tcp)
-    female_pedestrian_observer = psvdds.manObserverHandler(FEMALE_PEDESTRIAN_OBSERVER)
+    return cast(DictConfig, cfg)
 
-    for direction, distance, angle in itertools.product(directions, distances, angles):
+
+def main(config_path: Path) -> None:
+    cfg = load_config(config_path)
+    simulation = Simulation(cfg.script)
+    female_pedestrian = ObservablePedestrian(
+        FEMALE_PEDESTRIAN_NAME, FEMALE_PEDESTRIAN_OBSERVER, simulation
+    )
+
+    for direction, distance, angle, speed in itertools.product(
+        cfg.pedestrian.directions,
+        cfg.pedestrian.distances,
+        cfg.pedestrian.angles,
+        cfg.pedestrian.speeds,
+    ):
+        if direction == Direction.left:
+            start_position_y = cfg.left_y
+            end_position_y = cfg.right_y
+            direction_angle = -angle
+        else:
+            start_position_y = cfg.right_y
+            end_position_y = cfg.left_y
+            direction_angle = angle
+
         run_scenario_configuration(
-            tcp,
+            simulation,
+            start_position_y,
+            end_position_y,
             female_pedestrian,
-            female_pedestrian_observer,
-            direction,
             distance,
-            angle,
+            direction_angle,
+            speed,
         )
 
 
 def run_scenario_configuration(
-    tcp: ProsivicTCP,
-    pedestrian: Pedestrian,
-    pedestrian_observer: Any,
-    direction: Direction,
+    simulation: Simulation,
+    start_position_y: int,
+    end_position_y: int,
+    pedestrian: ObservablePedestrian,
     distance: int,
     angle: int,
+    speed: int,
 ) -> None:
-    if direction is Direction.Left:
-        start_position_y = DISTANCE_TO_ROAD
-        direction_angle = -angle
-    else:
-        start_position_y = -DISTANCE_TO_ROAD
-        direction_angle = angle
 
-    end_position_y = -start_position_y
+    print(
+        f"Running configuration start={start_position_y}, end={end_position_y}, distance={distance}, angle={angle}, speed={speed}"
+    )
 
-    # TODO: Does  z=0 work in all situations?
+    # TODO: Does z=0 work in all situations?
     pedestrian.set_position(distance, start_position_y, 0)
-    pedestrian.set_angle(direction_angle)
+    pedestrian.set_angle(angle)
 
-    tcp.play()
+    simulation.play()
 
-    pedestrian.set_speed(PEDESTRIAN_SPEED)
-    data = pedestrian_observer.receive()
+    pedestrian.set_speed(speed)
 
-    if direction is Direction.Left:
-        while data.Human_coordinate_Y > end_position_y:
-            data = pedestrian_observer.receive()
-    if direction is Direction.Right:
-        while data.Human_coordinate_Y < end_position_y:
-            data = pedestrian_observer.receive()
+    # TODO: Some scenarios get skipped? Do we need to wait for postion to be set?
+    wait_for_end_condition(start_position_y, end_position_y, pedestrian)
 
-    tcp.pause()
+    simulation.pause()
+
+
+def wait_for_end_condition(
+    start_position_y: int, end_position_y: int, pedestrian: ObservablePedestrian
+) -> None:
+    while (
+        start_position_y < end_position_y
+        and pedestrian.getPosition().y >= end_position_y
+        or pedestrian.getPosition().y <= end_position_y
+    ):
+        pass
